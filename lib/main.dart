@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler_flutter/Question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -27,13 +28,25 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
+  // List<String> questions = [
+  //   'You can lead a cow down stairs but not up stairs.',
+  //   'Approximately one quarter of human bones are in the feet.',
+  //   'A slug\'s blood is green.'
+  // ];
+  //
+  // List<bool> answers = [false, true, false];
+  //
+  // Question q1 = Question(q: 'You can lead a cow down stairs but not up stairs.',a: false);
+  // Question q2 = Question(q: 'Approximately one quarter of human bones are in the feet.',a: true);
+  // Question q3 = Question(q: 'A slug\'s blood is green.', a: false);
 
-  List<bool> answers = [false, true, false];
+  List<Question> questionBank = [
+    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
+    Question(
+        q: 'Approximately one quarter of human bones are in the feet.',
+        a: true),
+    Question(q: 'A slug\'s blood is green.', a: false),
+  ];
 
   int questionNumber = 0;
 
@@ -46,12 +59,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -61,20 +74,21 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: FloatingActionButton(
               // textColor: Colors.white,
               // color: Colors.green,
-              child: Text(
+              child: const Text(
                 'True',
-                style: TextStyle(
+                style:  TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 ),
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctanswer = answers[questionNumber];
+                bool correctanswer =
+                    questionBank[questionNumber].questionAnswer;
                 if (correctanswer == true) {
                   print('User got it right');
                 } else {
@@ -102,7 +116,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctanswer = answers[questionNumber];
+                bool correctanswer =
+                    questionBank[questionNumber].questionAnswer;
                 if (correctanswer == false) {
                   print('User got it right');
                 } else {
