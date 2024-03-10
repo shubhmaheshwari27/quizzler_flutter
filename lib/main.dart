@@ -40,7 +40,6 @@ class _QuizPageState extends State<QuizPage> {
   //   Question(q: 'A slug\'s blood is green.', a: false),
   // ];
 
-  int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -80,16 +79,14 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.
                 bool correctanswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                    quizBrain.getQuestionAnswer();
                 if (correctanswer == true) {
                   print('User got it right');
                 } else {
                   print('User got it wrong');
                 }
                 setState(() {
-                  questionNumber++;
                 });
-                print(questionNumber);
               },
             ),
           ),
@@ -109,16 +106,14 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
                 bool correctanswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                    quizBrain.getQuestionAnswer();
                 if (correctanswer == false) {
                   print('User got it right');
                 } else {
                   print('User got it wrong');
                 }
                 setState(() {
-                  questionNumber++;
                 });
-                print(questionNumber);
               },
             ),
           ),
