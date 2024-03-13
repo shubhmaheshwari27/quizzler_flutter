@@ -31,7 +31,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-
   void checkAnswer(bool userPickedAnswer) {
     bool correctanswer = quizBrain.getQuestionAnswer();
     setState(() {
@@ -107,7 +106,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: FloatingActionButton(
               // color: Colors.red,
               child: Text(
